@@ -260,7 +260,7 @@ const Home = React.forwardRef((props, ref) => {
           />
           <motion.img
             src={avatar}
-            alt="John Doe avatar"
+            alt="John Doe Avatar"
             className="absolute top-1/2 -translate-y-1/2 object-contain select-none pointer-events-none"
             style={{
               right: "-30px",
