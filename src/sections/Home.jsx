@@ -48,7 +48,30 @@ const glowVariants = {
 };
 
 const Home = React.forwardRef((props, ref) => {
-  const resumeHref = `${import.meta.env.BASE_URL}Resume.pdf`;
+  const resumeHref = `${import.meta.env.BASE_URL}JanithDharmasiri%20(1).pdf`;
+  const resumeFileName = "JanithDharmasiri-Resume.pdf";
+
+  const handleResumeDownload = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch(resumeHref, { cache: "no-store" });
+      if (!response.ok) throw new Error("Resume request failed");
+
+      const blob = await response.blob();
+      const blobUrl = URL.createObjectURL(blob);
+      const tempLink = document.createElement("a");
+
+      tempLink.href = blobUrl;
+      tempLink.download = resumeFileName;
+      document.body.appendChild(tempLink);
+      tempLink.click();
+      tempLink.remove();
+      URL.revokeObjectURL(blobUrl);
+    } catch {
+      window.open(resumeHref, "_blank", "noopener,noreferrer");
+    }
+  };
 
   const roles = useMemo(
     () => ["Full-Stack Developer", "Web Developer", "AI & ML Enthusiast","UI/UX Designer"],
@@ -205,7 +228,8 @@ const Home = React.forwardRef((props, ref) => {
               </a>
               <a
                 href={resumeHref}
-                download="JanithDharmasiri-Resume.pdf"
+                download={resumeFileName}
+                onClick={handleResumeDownload}
                 className="px-6 py-3 rounded-full text-lg font-medium text-black bg-white 
                 hover:bg-gray-200 shadow-lg hover:scale-105 transition-all"
               >
