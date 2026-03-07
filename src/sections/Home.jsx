@@ -48,6 +48,8 @@ const glowVariants = {
 };
 
 const Home = React.forwardRef((props, ref) => {
+  const resumeHref = `${import.meta.env.BASE_URL}Resume.pdf`;
+
   const roles = useMemo(
     () => ["Full-Stack Developer", "Web Developer", "AI & ML Enthusiast","UI/UX Designer"],
     [],
@@ -202,8 +204,8 @@ const Home = React.forwardRef((props, ref) => {
                 View My Work
               </a>
               <a
-                href="/JanithDharmasiri (1).pdf"
-                download="JanithDharmasiri (1).pdf"
+                href={resumeHref}
+                download="JanithDharmasiri-Resume.pdf"
                 className="px-6 py-3 rounded-full text-lg font-medium text-black bg-white 
                 hover:bg-gray-200 shadow-lg hover:scale-105 transition-all"
               >
